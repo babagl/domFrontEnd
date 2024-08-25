@@ -8,11 +8,11 @@
         "withUpdate" : true,
         "withDelete" : true
     },
-    "user" : {
+    "users" : {
         "titre" : "Utilisateurs",
         "endpoint" : "users",
         "headerTable" : [
-            "id", "firstName", "lastname"
+            "id", "firstName", "lastName"
         ],
         "withUpdate" : true,
         "withDelete" : true

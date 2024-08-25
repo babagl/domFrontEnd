@@ -3,8 +3,9 @@
     <div class="container-feature  container">
         <lib-table
             [dataTable]="dataTable"
+            [headerTable]="headerTable"
             [withDelete]="withDelete"
-            [withUpdate]="withUpdate" 
+            [withUpdate]="withUpdate"
             (dataToDelete)="deleteData($event)"
             (dataToUpdate)="updateData($event)"
           ></lib-table>

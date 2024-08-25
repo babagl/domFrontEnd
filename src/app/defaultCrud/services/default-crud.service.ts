@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import {Observable, tap} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class DefaultCrudService  {
 
   }
 
-  getData(uri:string, urlTo:string=DefaultCrudService.url){
+  getData(uri:string, urlTo:string=DefaultCrudService.url) : Observable<any>{
     return this.http.get(`${urlTo+uri}`).pipe(
       tap( (data) => {
         console.log(data);
@@ -21,7 +22,15 @@ export class DefaultCrudService  {
        )
     )
   }
- 
-  
-  
+
+  deleteData(uri:string, dataId : number) : Observable<any>{
+    return this.http.delete(`${DefaultCrudService.url+uri}/${dataId}`).pipe(
+      tap((data)=>{
+        console.log(data);
+      })
+    )
+  }
+
+
+
 }

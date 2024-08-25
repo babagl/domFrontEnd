@@ -1,22 +1,27 @@
 <main>
     <table>
-        
+
         <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
+                  @for (ele of headerTable; track ele){
+                    <th scope="col">{{ele}}</th>
+                  }
+
                     <th scope="col">Action</th>
                 </tr>
         </thead>
         <tbody>
+          @for (item of dataTable; track item.id; let i = $index){
             <tr>
-                <th scope="row">1</th>
-                <th scope="row">baba ngale</th>
-                <th scope="row">
-                    <button (click)="updateData(1)">update</button>
-                    <button (click)="deleteData(1)">delete</button>
-                </th>
+              @for (row of headerTable;track row){
+                <td>{{item[row]}}</td>
+              }
+              <th scope="row">
+                <button (click)="updateData(item.id)">update</button>
+                <button (click)="deleteData(item.id)">delete</button>
+              </th>
             </tr>
+          }
         </tbody>
     </table>
 </main>

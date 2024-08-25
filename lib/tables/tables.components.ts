@@ -10,6 +10,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 export class tableComponent{
 
     @Input() dataTable : any[] = [];
+    @Input() headerTable : string[] = [];
     @Input() withUpdate: boolean = false;
     @Input() withDelete: boolean = false;
     @Output() dataToUpdate : EventEmitter<number> = new EventEmitter<number>();
