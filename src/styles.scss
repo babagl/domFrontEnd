@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+} 
+
+.d-flex{
+    display: flex;
+}
+
+.jcc{
+    justify-content: center;
+}
+.aic{
+    align-items: center;
+}
+
+.flc{
+    flex-direction: column;
+}
+
+.jcb{
+    justify-content: space-between;
+}
+.jca{
+    justify-content: space-around;
+}

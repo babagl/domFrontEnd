@@ -1,1 +1,12 @@
-<p>default-crud works!</p>
+<div class="container">
+    <h1 class="titre">titre du manga</h1>
+    <div class="container-feature  container">
+        <lib-table
+            [dataTable]="dataTable"
+            [withDelete]="withDelete"
+            [withUpdate]="withUpdate" 
+            (dataToDelete)="deleteData($event)"
+            (dataToUpdate)="updateData($event)"
+          ></lib-table>
+    </div>
+</div>
