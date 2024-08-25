@@ -3,12 +3,17 @@ import { DefaultCrudComponent } from './defaultCrud/default-crud/default-crud.co
 
 export const routes: Routes = [
     {
-        path : 'crud',
+        path : 'posts',
         component : DefaultCrudComponent
 
 },
 {
+    path : 'users',
+    component : DefaultCrudComponent
+
+},
+{
     path : '**',
-    redirectTo : 'crud'
+    redirectTo : 'posts'
 }
 ];

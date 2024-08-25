@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { tableComponent } from "../../../../lib/tables/tables.components";
 import { DefaultCrudService } from '../services/default-crud.service';
 
@@ -11,7 +12,7 @@ import { DefaultCrudService } from '../services/default-crud.service';
 })
 export class DefaultCrudComponent implements OnInit{
 
-  constructor(private crudService : DefaultCrudService ){}
+  constructor(private crudService : DefaultCrudService , private router : Router){}
 
   dataTable : any[] = [];
   withDelete : boolean = false;
@@ -19,9 +20,14 @@ export class DefaultCrudComponent implements OnInit{
 
 
   ngOnInit(): void {
+
+let uri : string = this.router.url.substring(1);
+
     this.crudService.getData("","model.schema.json").subscribe({
-      next : (data)=>{
-        console.log(data);
+      next : (data : any)=>{
+        console.log("les "+ uri);
+        
+        console.log(data[uri]);
         
 
       },error : () =>{

@@ -1,5 +1,5 @@
 {
-    "post" : {
+    "posts" : {
         "titre" : "Postes",
         "endpoint" : "posts",
         "headerTable" : [
