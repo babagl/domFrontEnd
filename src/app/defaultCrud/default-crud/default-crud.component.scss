@@ -1,7 +1,48 @@
-.titre{
-    margin: 10px;
-}
+
 
 .container-feature{
     padding: 10px;
+}
+
+
+.titre{
+  margin: 10px;
+}
+
+.add-button{
+  width: 100%;
+  height: 10%;
+}
+.add-button button{
+  padding: 1em;
+  border: none;
+  border-radius: 0.6em;
+  background-color: green;
+  cursor: pointer;
+  margin-right: 3em;
+  color: #fefefe;
+}
+
+
+/* Animation d'apparition */
+.modal {
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+
+/* Keyframes pour fadeIn */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Animation de disparition */
+.modal-content {
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-50px);}
+  to {transform: translateY(0);}
 }

@@ -1,0 +1,50 @@
+@if (isVisible){
+  <div class="modal d-flex jcc aic"  (click)="onOutsideClick($event)">
+    <div class="modal-content">
+      <span class="close" (click)="close()">&times;</span>
+      <h2>Contactez-nous</h2>
+      <form class="d-flex fdc jcc aic" [formGroup]="form" (ngSubmit)="onSubmit()">
+        @for (item of dataForModalAjout; track item.id){
+          <div class="form-row">
+            @for (field of item.value; track field.label ){
+              <div class="form-group" >
+                <label for="{{field.id}}">{{field.label}}</label>
+                @if(field.type == "input" ){
+                  <input id="{{field.id}}" type="{{field.inputType}}" formControlName="{{field.name}}" />
+                  <div class="error" >
+                  @if(form.get(field.name)?.invalid && (form.get(field.name)?.touched || form.get(field.name)?.dirty )){
+                     <span>
+                       {{field.errorMessage??""}}
+                     </span>
+                  }
+                  </div>
+
+                }
+                @if(field.type == "select" ) {
+                  <select id="{{field.id}}" formControlName="{{field.name}}" >
+                    <option value="">Choisir ...</option>
+                    <option value="fr">France</option>
+                    <option value="ml">Mali</option>
+                  </select>
+                  <div class="error" >
+                    @if(form.get(field.name)?.invalid && (form.get(field.name)?.touched || form.get(field.name)?.dirty )){
+                      <span>
+                       {{field.errorMessage??""}}
+                     </span>
+                    }
+                  </div>
+              }
+              </div>
+            }
+          </div>
+        }
+        <div class="row-form d-flex jce aic">
+          <button type="submit" class="button-submit" [disabled]="form.invalid" >Envoyer</button>
+          <button type="reset" class="button-reset" (click)="close()" >Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+

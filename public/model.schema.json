@@ -1,13 +1,53 @@
 {
     "posts" : {
-        "titre" : "Postes",
-        "endpoint" : "posts",
-        "headerTable" : [
-            "id", "name"
-        ],
-        "withUpdate" : true,
-        "withDelete" : true
+      "titre" : "Postes",
+      "endpoint" : "posts",
+      "headerTable" : [
+          "id", "name"
+      ],
+      "withUpdate" : true,
+      "withDelete" : true,
+      "ajout" : [
+        {
+        "id" : 1,
+        "value" : [
+          {
+            "type" : "input",
+            "label": "Identifiant",
+            "inputType": "number",
+            "errorMessage" : "Le champ id est requis.",
+            "control": {
+              "initiale" : "0",
+              "validations" : ["required"]
+            },
+            "id": "id",
+            "name" : "id"
+          }
+        ]
+        },
+        {
+          "id" : 2,
+          "value" : [
+
+        {
+          "type" : "input",
+          "label": "Nom",
+          "inputType": "text",
+          "errorMessage" : "Le nom du post est requis et dois comporter au moins 3 lettres",
+          "control": {
+            "initiale" : "",
+            "validations" : ["required", "minLength_3"]
+          },
+          "id": "name",
+          "name" : "name"
+        }
+          ]
+        }
+      ]
     },
+
+
+
     "users" : {
         "titre" : "Utilisateurs",
         "endpoint" : "users",
@@ -15,6 +55,67 @@
             "id", "firstName", "lastName"
         ],
         "withUpdate" : true,
-        "withDelete" : true
+        "withDelete" : true,
+      "ajout" : [
+        {
+          "id" : "1",
+          "value" : [
+                  {
+                    "label": "Prenom",
+                    "inputType": "text",
+                    "control": {
+                      "initiale" : "Babacar",
+                      "validations" : ["required", "minLength_3"]
+
+                    },
+                    "errorMessage" : "Le champ prenom est requis et dois comporter au moins 3 lettres",
+                    "id": "prenom",
+                    "name": "prenom",
+                    "type" : "input"
+                  },
+                  {
+                    "label": "Nom",
+                    "inputType": "text",
+                    "control": {
+                      "initiale" : "Sy",
+                      "validations" : ["required"]
+                    },
+                    "errorMessage" : "Le champ nom est requis",
+                    "id": "nom",
+                    "name": "nom",
+                    "type" : "input"
+                  }
+        ]
+        },
+        {
+          "id" : 2,
+          "value":  [
+                      {
+                        "label": "Email",
+                        "inputType": "email",
+                        "control": {
+                          "initiale" : "",
+                          "validations" : ["required", "email"]
+                        },
+                        "id": "email",
+                        "errorMessage" : "Le champ email est obligatoire et dois etre de type email",
+                        "name": "email",
+                        "type" : "input"
+                      },
+                      {
+                        "label": "Password",
+                        "type" : "input",
+                        "inputType": "password",
+                        "control": {
+                          "initiale" : "",
+                          "validations" : ["required", "minLength_5"]
+                        },
+                        "errorMessage" : "Le champ mot de passe est requis et doit comporter au moins 5 caracteres",
+                        "id": "password",
+                        "name": "password"
+                      }
+        ]
+        }
+      ]
     }
 }

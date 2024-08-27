@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
     standalone: true,
 
 })
-export class tableComponent{
+export class TableComponent{
 
     @Input() dataTable : any[] = [];
     @Input() headerTable : string[] = [];

@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { tableComponent } from "../../../../lib/tables/tables.components";
+import { TableComponent } from "../../../../lib";
 import { DefaultCrudService } from '../services/default-crud.service';
 import {switchMap, tap} from "rxjs";
+import {ModalComponent} from "../../../../lib/modal/modal.component";
+import {AlertService} from "../../helper/services/alert.service";
 
 @Component({
   selector: 'app-default-crud',
   standalone: true,
-  imports: [tableComponent],
+  imports: [TableComponent, ModalComponent],
   templateUrl: './default-crud.component.html',
   styleUrl: './default-crud.component.scss'
 })
 export class DefaultCrudComponent implements OnInit{
 
-  constructor(private crudService : DefaultCrudService , private router : Router){}
 
   title : string = "";
   headerTable : string[] = [];
@@ -21,6 +22,10 @@ export class DefaultCrudComponent implements OnInit{
   withDelete : boolean = false;
   withUpdate : boolean = false;
   uri : string = "";
+  modalVisible: boolean = false; // État de visibilité du modal
+  dataForModalAjout : any[] = [];
+
+  constructor(private crudService : DefaultCrudService , private router : Router, private  alertService : AlertService){}
 
 
   ngOnInit(): void {
@@ -28,13 +33,11 @@ export class DefaultCrudComponent implements OnInit{
       this.getData(this.uri);
   }
 
-
-
   /*
   * Méthode pour charger les données
   * */
   getData(uri : string){
-    this.crudService.getData("","model.schema.json").pipe(
+    this.crudService.getDataInJasonFile().pipe(
       tap((data : any)=>{
         console.log("-------------------")
         console.log(data)
@@ -42,6 +45,7 @@ export class DefaultCrudComponent implements OnInit{
         this.headerTable = data[uri]["headerTable"];
         this.withDelete = data[uri]["withDelete"];
         this.withDelete = data[uri]["withDelete"];
+        this.dataForModalAjout = data[uri]["ajout"];
       }),
       switchMap((data : any) => {
         console.log(data)
@@ -73,6 +77,27 @@ export class DefaultCrudComponent implements OnInit{
       }
     )
 
+  }
+
+  addNewData(data : any){
+    this.crudService.postData<any,any>(this.uri, data).subscribe({
+      next : (value : any)=> {
+        this.dataTable.unshift(data);
+        this.modalVisible = false;
+        this.alertService.showAlert({
+          title: "Ajout",
+          text: "Opération effectuée avec succes",
+          icon: "success"
+        });
+    }
+    })
+  }
+
+
+
+  // Méthode pour ouvrir le modal
+  openModal() {
+    this.modalVisible = true;
   }
 
 }

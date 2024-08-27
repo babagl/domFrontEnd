@@ -2,21 +2,21 @@
 
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
 body{
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .container{
-    width: 100%;
-    height: 100%;
-} 
+  width: 100%;
+  height: 100%;
+}
 
 .d-flex{
     display: flex;
@@ -29,7 +29,7 @@ body{
     align-items: center;
 }
 
-.flc{
+.fdc{
     flex-direction: column;
 }
 
@@ -38,4 +38,25 @@ body{
 }
 .jca{
     justify-content: space-around;
+}
+.jce{
+  justify-content: end;
+}
+
+.ais{
+  align-items: start;
+}
+
+.fww{
+  flex-wrap: wrap;
+}
+
+.row-form{
+  width: 100%;
+  height: 100%;
+  gap: 3px;
+}
+
+.flex-shrink-1{
+  flex-shrink: 1;
 }

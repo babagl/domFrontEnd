@@ -1,5 +1,11 @@
 <div class="container">
+  <div >
     <h1 class="titre">titre du manga</h1>
+  </div>
+  <!-- Bouton pour ouvrir le modal -->
+  <div class="add-button d-flex aic jce">
+    <button (click)="openModal()">Ouvrir le Modal</button>
+  </div>
     <div class="container-feature  container">
         <lib-table
             [dataTable]="dataTable"
@@ -10,4 +16,11 @@
             (dataToUpdate)="updateData($event)"
           ></lib-table>
     </div>
+  <!-- Composant Modal -->
+  <lib-modal
+    [(isVisible)]="modalVisible"
+    [dataForModalAjout]="dataForModalAjout"
+    (dataToAdd)="addNewData($event)"
+  ></lib-modal>
 </div>
+

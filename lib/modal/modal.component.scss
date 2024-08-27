@@ -1,0 +1,114 @@
+.modal {
+  position: fixed; /* Reste en place */
+  z-index: 1000; /* Au-dessus de tout */
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  width: auto; /* Pleine largeur */
+  height: 100%; /* Pleine hauteur */
+  overflow: auto; /* Scroll si nécessaire */
+  background-color: rgba(0, 0, 0, 0.4); /* Fond sombre avec transparence */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  //margin: 15% auto; /* 15% du haut et centré horizontalement */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* 80% de la largeur */
+  max-width: 500px; /* Largeur maximale */
+  border-radius: 8px; /* Coins arrondis */
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+
+form {
+  width: 100%;
+  height: 100%;
+  margin: 1em;
+}
+
+div {
+  margin-bottom: 5px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  gap: 20px; /* Espace entre les inputs */
+}
+
+.gap-1{
+  gap: 10px;
+}
+
+.form-group {
+  flex: 1; /* Permet aux champs de prendre la même largeur */
+  min-width: 100px; /* Largeur minimale pour les petits écrans */
+}
+
+.form-group:nth-child(1):only-child {
+  flex-basis: 70%; /* Si un seul enfant, il prend toute la largeur */
+}
+
+input, select {
+  width: 100%; /* S'assure que les inputs prennent toute la largeur de leur conteneur */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button-reset{
+  background-color: red;
+  margin-right: 1em;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  //background-color: blue;
+  font-size: 0.875em;
+  min-height: 20px; /* Définit une hauteur minimale pour l'erreur */
+  height: auto; /* Limite la hauteur maximale */
+  overflow: hidden; /* Cache le débordement */
+}
+
+
