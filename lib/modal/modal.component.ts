@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from "@angular/core";
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from "@angular/core";
 import {NgClass} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
@@ -62,14 +62,13 @@ export class ModalComponent implements  OnChanges{
    * @param data : {"id" : string, value : any[] }[]
    * @return any
    * */
-
   private getValueAndControlInData(data : {"id" : string, value : any[] }[]){
     let valueFormGroup : any = {};
     for (const dataElement of data) {
-      for (let i = 0; i < dataElement["value"].length; i++) {
-        valueFormGroup[dataElement["value"][i]["name"]] = [
-              dataElement["value"][i]["control"]["initiale"],
-              this.getValidationsOfField(dataElement["value"][i]["control"]["validations"])
+      for (const dataElementElement of dataElement["value"]) {
+        valueFormGroup[dataElementElement["name"]] = [
+          dataElementElement["control"]["initiale"],
+          this.getValidationsOfField(dataElementElement["control"]["validations"])
         ];
       }
     }
@@ -95,30 +94,30 @@ export class ModalComponent implements  OnChanges{
  * */
   private getValidationsOfField(validations : string[]) : Validators[]{
     let trueValidations : Validators[] =[];
-    for (let i = 0; i < validations.length; i++) {
-      if(validations[i].startsWith("required")){
-        trueValidations.push(Validators.required)
+    for (const validation of validations) {
+        if(validation.startsWith("required")){
+          trueValidations.push(Validators.required)
+        }
+        if(validation.startsWith("min_")){
+          trueValidations.push(Validators.min(parseInt(validation.split("_")[1])))
+        }
+        if(validation.startsWith("max_")){
+          trueValidations.push(Validators.max(parseInt(validation.split("_")[1])))
+        }
+        if(validation.startsWith("email")){
+          trueValidations.push(Validators.email)
+        }
+        if(validation.startsWith("minLength")){
+          trueValidations.push(Validators.minLength(parseInt(validation.split("_")[1])))
+        }
+        if(validation.startsWith("maxLength")){
+          trueValidations.push(Validators.maxLength(parseInt(validation.split("_")[1])))
+        }
+        if(validation.startsWith("pattern")){
+          trueValidations.push(Validators.pattern(validation.split("_")[1]))
+        }
       }
-      if(validations[i].startsWith("min_")){
-        trueValidations.push(Validators.min(parseInt(validations[i].split("_")[1])))
-      }
-      if(validations[i].startsWith("max_")){
-        trueValidations.push(Validators.max(parseInt(validations[i].split("_")[1])))
-      }
-      if(validations[i].startsWith("email")){
-        trueValidations.push(Validators.email)
-      }
-      if(validations[i].startsWith("minLength")){
-        trueValidations.push(Validators.minLength(parseInt(validations[i].split("_")[1])))
-      }
-      if(validations[i].startsWith("maxLength")){
-        trueValidations.push(Validators.maxLength(parseInt(validations[i].split("_")[1])))
-      }
-      if(validations[i].startsWith("pattern")){
-        trueValidations.push(Validators.pattern(validations[i].split("_")[1]))
-      }
-    }
-    return trueValidations;
+      return trueValidations;
   }
 
 }
