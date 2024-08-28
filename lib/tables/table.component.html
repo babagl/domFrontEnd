@@ -1,6 +1,7 @@
 <main>
     <table>
 
+
         <thead>
                 <tr>
                   @for (ele of headerTable; track ele){
@@ -17,8 +18,12 @@
                 <td>{{item[row]}}</td>
               }
               <th scope="row">
-                <button (click)="updateData(item.id)">update</button>
-                <button (click)="deleteData(item.id)">delete</button>
+                @if(withUpdate){
+                  <button (click)="updateData(item.id)">update</button>
+                }
+                @if(withDelete){
+                  <button (click)="deleteData(item.id)">delete</button>
+                }
               </th>
             </tr>
           }
