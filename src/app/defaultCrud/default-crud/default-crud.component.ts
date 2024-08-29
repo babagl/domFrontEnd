@@ -21,6 +21,7 @@ export class DefaultCrudComponent implements OnInit{
   dataTable : any[] = [];
   withDelete : boolean = false;
   withUpdate : boolean = false;
+  dataToUpdate : any;
   uri : string = "";
   modalVisible: boolean = false; // État de visibilité du modal
   dataForModalAjout : any[] = [];
@@ -43,7 +44,7 @@ export class DefaultCrudComponent implements OnInit{
         console.log(data)
         this.title = data["titre"];
         this.headerTable = data[uri]["headerTable"];
-        this.withDelete = data[uri]["withDelete"];
+        this.withUpdate = data[uri]["withUpdate"];
         this.withDelete = data[uri]["withDelete"];
         this.dataForModalAjout = data[uri]["ajout"];
       }),
@@ -55,6 +56,11 @@ export class DefaultCrudComponent implements OnInit{
       next : (data : any)=>{
         this.dataTable = data;
       },error : () =>{
+        this.alertService.showAlert({
+          title: "Erreur",
+          text: "Une érreur s'est produite lors de la récupération des données ",
+          icon: "error"
+        });
         console.error("Erreur lors de la lecture du fichier json" );
 
 
@@ -63,12 +69,33 @@ export class DefaultCrudComponent implements OnInit{
 
   }
 
-  updateData(dataId : number){
-    console.log("updata data")
-    console.log(dataId);
-
+  dataIdDateToUpdate(dataId : string){
+    this.dataToUpdate = this.dataTable.find(element => element["id"] == dataId);
+    this.modalVisible = true;
   }
-  deleteData(dataId : number){
+
+
+
+  updateData(data : any){
+    console.log("mons")
+    console.log(this.dataToUpdate)
+    this.crudService.putData(this.uri+"/"+this.dataToUpdate.id.toString(), data).subscribe({
+      next :(value : any) =>{
+        console.log(value)
+        this.dataTable = this.dataTable.filter(element => element.id != this.dataToUpdate.id)
+        this.dataTable.unshift(value)
+      },
+      error : (err)=>{
+        console.log(err)
+        this.alertService.showAlert({
+          title: "Erreur",
+          text: "Une érreur s'est produite lors de la modification des données",
+          icon: "error"
+        })
+      }
+    })
+  }
+  deleteData(dataId : string){
     this.crudService.deleteData(this.uri, dataId).subscribe(
       {
         next : (data : any)=>{

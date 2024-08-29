@@ -19,8 +19,11 @@ export class ModalComponent implements  OnChanges{
 
   @Input() isVisible: boolean = false; // Contrôle la visibilité du modal
   @Input() dataForModalAjout: any[] = [];
+  @Input() dataToUpdate: any;
+  @Output() updateData:EventEmitter<any> = new EventEmitter<any>();
   @Output() isVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>(); // Émet un événement lorsqu'on ferme le modal
   @Output() dataToAdd : EventEmitter<any> = new EventEmitter<any>();
+  addOrUpdate : boolean = true;
   form !: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -34,6 +37,7 @@ export class ModalComponent implements  OnChanges{
    */
   close() {
     this.isVisible = false;
+    this.addOrUpdate = true;
     this.form.reset()
     this.isVisibleChange.emit(this.isVisible);
   }
@@ -53,7 +57,13 @@ export class ModalComponent implements  OnChanges{
   * Il envoie l'objet au composant parent
   * @return void */
   onSubmit(){
-    this.dataToAdd.emit(this.form.value);
+    if(this.addOrUpdate){
+      this.dataToAdd.emit(this.form.value);
+    }else {
+      this.updateData.emit(this.form.value);
+    }
+    this.close();
+
   }
 
   /**
@@ -77,12 +87,29 @@ export class ModalComponent implements  OnChanges{
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dataForModalAjout'] && this.dataForModalAjout.length > 0) {
+      this.addOrUpdate = true;
       this.form = this.formBuilder.group({
         ...this.getValueAndControlInData(this.dataForModalAjout)
       });
     }
     if(changes["modalVisible"] && !this.isVisible){
       this.close();
+    }
+    if (this.dataToUpdate) {
+      this.addOrUpdate = false;
+      let val: any = {};
+      if (this.dataToUpdate["id"]) {
+        for (const [key, value] of Object.entries(this.dataToUpdate)) {
+          if (key !== "id") {
+            val[key] = value;
+          }
+        }
+      } else {
+        val = this.dataToUpdate;
+      }
+      this.form.patchValue(val);
+
+
     }
   }
 

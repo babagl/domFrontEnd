@@ -9,24 +9,7 @@
       "withDelete" : true,
       "ajout" : [
         {
-        "id" : 1,
-        "value" : [
-          {
-            "type" : "input",
-            "label": "Identifiant",
-            "inputType": "number",
-            "errorMessage" : "Le champ id est requis.",
-            "control": {
-              "initiale" : "0",
-              "validations" : ["required"]
-            },
-            "id": "id",
-            "name" : "id"
-          }
-        ]
-        },
-        {
-          "id" : 2,
+          "id" : 1,
           "value" : [
 
         {
@@ -52,7 +35,7 @@
         "titre" : "Utilisateurs",
         "endpoint" : "users",
         "headerTable" : [
-            "id", "firstName", "lastName"
+            "id", "firstName", "lastName", "email"
         ],
         "withUpdate" : true,
         "withDelete" : true,
@@ -70,7 +53,7 @@
                     },
                     "errorMessage" : "Le champ prenom est requis et dois comporter au moins 3 lettres",
                     "id": "prenom",
-                    "name": "prenom",
+                    "name": "firstName",
                     "type" : "input"
                   },
                   {
@@ -82,7 +65,7 @@
                     },
                     "errorMessage" : "Le champ nom est requis",
                     "id": "nom",
-                    "name": "nom",
+                    "name": "lastName",
                     "type" : "input"
                   }
         ]

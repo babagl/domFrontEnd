@@ -13,14 +13,14 @@ export class TableComponent{
     @Input() headerTable : string[] = [];
     @Input() withUpdate: boolean = false;
     @Input() withDelete: boolean = false;
-    @Output() dataToUpdate : EventEmitter<number> = new EventEmitter<number>();
-    @Output() dataToDelete : EventEmitter<number> = new EventEmitter<number>();
+    @Output() dataToUpdate : EventEmitter<string> = new EventEmitter<string>();
+    @Output() dataToDelete : EventEmitter<string> = new EventEmitter<string>();
 
 
-    public updateData=(dataId : number)=>{
+    public updateData=(dataId : string)=>{
         this.dataToUpdate.emit(dataId);
     }
-    public deleteData=(dataId : number)=>{
+    public deleteData=(dataId : string)=>{
         this.dataToDelete.emit(dataId)
     }
 

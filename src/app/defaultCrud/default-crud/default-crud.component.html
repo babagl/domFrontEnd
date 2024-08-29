@@ -13,14 +13,16 @@
             [withDelete]="withDelete"
             [withUpdate]="withUpdate"
             (dataToDelete)="deleteData($event)"
-            (dataToUpdate)="updateData($event)"
+            (dataToUpdate)="dataIdDateToUpdate($event)"
           ></lib-table>
     </div>
   <!-- Composant Modal -->
   <lib-modal
     [(isVisible)]="modalVisible"
+    [dataToUpdate]="dataToUpdate"
     [dataForModalAjout]="dataForModalAjout"
     (dataToAdd)="addNewData($event)"
+    (updateData)="updateData($event)"
   ></lib-modal>
 </div>
 
