@@ -44,8 +44,9 @@ let val= {
          "value" : [
            {
              "label": "Prenom",
-             "inputType": "text",
-             "type" : "input",
+             "inputType": "",
+             "type" : "select",
+
              "control": {
                "initiale" : "Babacar",
                "validations" : ["required", "minLength_3"]

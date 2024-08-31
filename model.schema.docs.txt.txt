@@ -1,0 +1,17 @@
+model.schema.docs.js
+
+
+ "users" : {
+        "titre" : "Utilisateurs",
+        "endpoint" : "users",
+        "headerTable" : [
+            "id", "firstName", "lastName"
+        ],
+        "withUpdate" : true,
+        "withDelete" : true,
+      "ajout" : [
+        {}
+]
+
+
+sonar-scanner -Dsonar.projectKey=frontend_dom -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_7d4d64ca6192cb819d7e74bdde7b68db0d278ea5

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { TableComponent } from "../../../../lib";
 import { DefaultCrudService } from '../services/default-crud.service';
 import {switchMap, tap} from "rxjs";
@@ -26,12 +26,33 @@ export class DefaultCrudComponent implements OnInit{
   modalVisible: boolean = false; // État de visibilité du modal
   dataForModalAjout : any[] = [];
 
-  constructor(private crudService : DefaultCrudService , private router : Router, private  alertService : AlertService){}
+  constructor(private crudService : DefaultCrudService , private router : Router, private  alertService : AlertService, private activatedRoute : ActivatedRoute){}
 
 
   ngOnInit(): void {
-      this.uri = this.router.url.substring(1);
-      this.getData(this.uri);
+    this.uri = this.router.url.substring(1);
+    //this.getDataWithResolver(this.activatedRoute.snapshot.data["data"])
+    this.activatedRoute.data.subscribe({
+      next: (val : any)=>{
+        console.log("test")
+        console.log(val)
+        this.getDataWithResolver(val.data)
+      },
+      error: (val : any)=>{
+        console.log("val")
+      }
+    });
+    //this.activatedRoute.snapshot.queryParams.subscribe((params : any) => {})
+
+  }
+
+  getDataWithResolver(data : any){
+    this.title = data["titre"];
+    this.headerTable = data["headerTable"];
+    this.withUpdate = data["withUpdate"];
+    this.withDelete = data["withDelete"];
+    this.dataForModalAjout = data["dataForModalAjout"];
+    this.dataTable = data["data"];
   }
 
   /*
