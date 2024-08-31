@@ -1,5 +1,4 @@
 
-/**
  * Le fichier model.schema.json va contenir les informations des différents composants qui aurons seulement besoin d'un crud
  * Chaque clé de ce fichier va représenter un composant qui pourra etre traiter.
  * La clé est l'uri de la route, elle sera alors récuperer dans le constructeur du composant defaultCrud. Ce dernier va alors faire appel au fichier model.schema.json et récuperer les informations du creer le composant
@@ -15,21 +14,20 @@
  * La clé value va contenir d'une ligne dans le modale. C'est dans cette clé qu'on va connaitre le nombre de champ que la ligne va contenir et pour chaque champ les infomations de ce champs
  * La clé value va prendre un tableau d'objet comme valeur. Chaque objet va reprsénter un champ. Le css va automatiquement s'adapter au nombre de champ , permettant ainsi à tous les champs de pour etre contenue et si necssaire d'aller à la ligne
 * Un objet du tableau de la clé value va contenir les champs suivant :
- *  - label : qui va représenter la valeur que le label du champ va afficher
- *  - type : il va représenter le type du champ : input, select ou image(à venir, pas encore implémenter)
- *  - inputType : Il va représenter le type de champ . Il peut prendre toutes les valeurs existants des inputs si le type est input, chaine vide pour les autres types
- *  - control : c'est un objet qui doit contenir les différents controle qui seront appliqués à ce champ et possiblement sa valeur initiale
- *  - control.initiale : Il contenir la valeur par défaut du champ
- *  - control.validations : c'est un tableau de chaines de caracteres qui va contenir les différentes validations du champ. Ses valeurs possibles : required , min, max, pattern, email, minLength et minLength
- *                        pour certaines valeurs de validations, il valeur est necessaire pour faire la validation comme par exemple min, il nous faut lui fournir la valeur minimale. Pour cela on le concataine avec la validation : on met min_3 pour dire que la valeur minimale est de 3
- *
- *  - errorMessage : cette clé va représenter le message d'erreur qui sera affiché lorsuq'un validation n'a pas été respecter par la l'utilisateur
- *  - id : va représenter l'id du champ
- *  - name : va représenter la valeur du formControleName qui sera utiliser
- *
- *  */
+   - label : qui va représenter la valeur que le label du champ va afficher
+   - type : il va représenter le type du champ : input, select ou image(à venir, pas encore implémenter)
+   - inputType : Il va représenter le type de champ . Il peut prendre toutes les valeurs existants des inputs si le type est input, chaine vide pour les autres types
+   - control : c'est un objet qui doit contenir les différents controle qui seront appliqués à ce champ et possiblement sa valeur initiale
+   - control.initiale : Il contenir la valeur par défaut du champ
+   - control.validations : c'est un tableau de chaines de caracteres qui va contenir les différentes validations du champ. Ses valeurs possibles : required , min, max, pattern, email, minLength et minLength
+                         pour certaines valeurs de validations, il valeur est necessaire pour faire la validation comme par exemple min, il nous faut lui fournir la valeur minimale. Pour cela on le concataine avec la validation : on met min_3 pour dire que la valeur minimale est de 3
+ 
+   - errorMessage : cette clé va représenter le message d'erreur qui sera affiché lorsuq'un validation n'a pas été respecter par la l'utilisateur
+   - id : va représenter l'id du champ
+   - name : va représenter la valeur du formControleName qui sera utiliser
 
-let val= {
+```javascript
+  let val= {
    "users": {
      "titre": "Utilisateurs",
      "endpoint": "users",
@@ -63,3 +61,5 @@ let val= {
      ]
    }
  }
+
+```

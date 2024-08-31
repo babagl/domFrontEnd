@@ -20,6 +20,14 @@ export const routes: Routes = [
 
 },
 {
+
+    path : "medicament",
+    component : DefaultCrudComponent,
+    resolve : {
+        data : preloadModelSchemaJsonResolver
+    }
+},
+{
     path : '**',
     redirectTo : 'posts'
 }

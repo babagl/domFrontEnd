@@ -3,7 +3,7 @@
       "titre" : "Postes",
       "endpoint" : "posts",
       "headerTable" : [
-          "id", "name"
+           "name"
       ],
       "withUpdate" : true,
       "withDelete" : true,
@@ -35,7 +35,7 @@
         "titre" : "Utilisateurs",
         "endpoint" : "users",
         "headerTable" : [
-            "id", "firstName", "lastName", "email"
+             "firstName", "lastName", "email"
         ],
         "withUpdate" : true,
         "withDelete" : true,
@@ -100,5 +100,36 @@
         ]
         }
       ]
+    },
+    "medicament" : {
+      "titre": "gestion des medicaments",
+      "endpoint": "medicament",
+      "headerTable": [
+         "name"
+      ],
+      "withUpdate": true,
+      "withDelete": true,
+      "ajout": [
+        {
+          "id" : 1,
+          "value" : [
+            {
+              "label": "Nom du medoc",
+              "inputType": "text",
+              "type" : "input",
+              "control": {
+                "initiale" : "",
+                "validations" : ["required", "minLength_3"]
+
+              },
+              "errorMessage" : "Le champ prenom est requis et dois comporter au moins 3 lettres",
+              "id": "name",
+              "name": "name"
+
+            }
+          ]
+        }
+
+     ]
     }
 }
